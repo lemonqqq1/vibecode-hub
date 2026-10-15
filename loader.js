@@ -1,5 +1,5 @@
 (function(){
-  var n = 5, parts = [], done = 0;
+  var n = 9, parts = [], done = 0;
   function tryFinish(){
     if(done < n) return;
     document.body.insertAdjacentHTML('afterbegin', parts.join(''));
@@ -9,11 +9,11 @@
   }
   for(var i = 0; i < n; i++){
     (function(i){
-      fetch('part' + i + '.html').then(function(r){ return r.text(); }).then(function(t){
+      fetch('frag' + i + '.html').then(function(r){ return r.text(); }).then(function(t){
         parts[i] = t;
         done++;
         tryFinish();
-      }).catch(function(e){ console.error(e); });
+      }).catch(function(e){ console.error('frag'+i, e); });
     })(i);
   }
 })();
