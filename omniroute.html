@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniRoute — подробный гайд | VibeCode Hub</title>
+<meta name="description" content="Установка и использование OmniRoute с Claude Code: free-провайдеры, launch, setup-claude, типичные ошибки.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="sp"></div>
+<nav>
+<a href="index.html"><b>VibeCode Hub</b></a>
+<a href="index.html#credits">← К токенам</a>
+<a href="index.html#start">Старт</a>
+<button id="theme" aria-label="Сменить тему">Тема</button>
+</nav>
+<main>
+<header class="hero">
+<div>
+<h1>OmniRoute — подробный гайд</h1>
+<p class="lead">Локальный AI-шлюз для Claude Code и других CLI: один endpoint → много провайдеров, в том числе free-тиры. Это замена «мозга», не настоящий Claude.</p>
+<div class="btns">
+<a class="btn p" href="#install">Установка</a>
+<a class="btn" href="#claude">Claude Code</a>
+<a class="btn" href="https://github.com/diegosouzapw/OmniRoute">GitHub</a>
+</div>
+</div>
+</header>
+
+<section id="what">
+<h2>Что это и чего ждать</h2>
+<p class="lead">OmniRoute — open-source роутер на твоём ПК. Claude Code остаётся тем же интерфейсом; отвечает модель провайдера, который ты подключил.</p>
+<div class="box warn">
+<p><b>Важно:</b> OmniRoute <b>не делает платный Claude бесплатным</b>. Качество и поведение ≠ официальный Claude. Free-тиры у провайдеров могут требовать регистрацию, одобрение или карту и меняться без предупреждения.</p>
+</div>
+</section>
+
+<section id="install">
+<h2>1. Установка</h2>
+<div class="step"><div class="n">1</div><div>
+<h3>Нужны Node.js и Claude Code</h3>
+<pre><code>node -v
+npm -v
+claude --version</code></pre>
+<p>Claude Code, если ещё нет:</p>
+<pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+</div></div>
+<div class="step"><div class="n">2</div><div>
+<h3>Поставить OmniRoute</h3>
+<p><b>npm (рекомендуется):</b></p>
+<pre><code>npm install -g omniroute
+omniroute --version</code></pre>
+<p><b>Docker:</b></p>
+<pre><code>docker run -d --name omniroute --restart unless-stopped --stop-timeout 40 -p 20128:20128 -v omniroute-data:/app/data diegosouzapw/omniroute:latest</code></pre>
+<p><b>Из исходников:</b></p>
+<pre><code>git clone https://github.com/diegosouzapw/OmniRoute.git
+cd OmniRoute
+npm install
+npm run dev</code></pre>
+</div></div>
+<div class="step"><div class="n">3</div><div>
+<h3>Запуск</h3>
+<p>В отдельном окне терминала (не закрывай):</p>
+<pre><code>omniroute</code></pre>
+<p>Dashboard: <code>http://localhost:20128</code> · API: <code>http://localhost:20128/v1</code></p>
+<pre><code>omniroute --no-open
+omniroute doctor
+omniroute setup</code></pre>
+</div></div>
+</section>
+
+<section id="providers">
+<h2>2. Провайдеры и ключ</h2>
+<div class="step"><div class="n">4</div><div>
+<h3>Подключи провайдеров</h3>
+<p>Dashboard → <b>Providers → Add Provider</b>. Без провайдеров список моделей пустой.</p>
+<ul>
+<li><b>Kiro AI</b> — часто без ключа, free Claude-подобные модели</li>
+<li><b>OpenCode Free</b> — без ключа</li>
+<li><b>Pollinations</b> — без ключа</li>
+<li>OpenAI / Anthropic / Groq / Gemini — свой API-ключ</li>
+</ul>
+</div></div>
+<div class="step"><div class="n">5</div><div>
+<h3>Создай ключ OmniRoute</h3>
+<p>Dashboard → <b>Endpoints</b> → создай ключ → скопируй сразу. Это доступ к <b>локальному</b> шлюзу, не к Anthropic.</p>
+<pre><code>curl http://localhost:20128/v1/models -H "Authorization: Bearer ТВОЙ_КЛЮЧ"</code></pre>
+</div></div>
+</section>
+
+<section id="claude">
+<h2>3. Claude Code через OmniRoute</h2>
+<div class="step"><div class="n">6</div><div>
+<h3>Самый простой способ</h3>
+<p>Окно 1: <code>omniroute</code>. Окно 2:</p>
+<pre><code>omniroute launch</code></pre>
+<p>Подставит <code>ANTHROPIC_BASE_URL</code> и токен, проверит сервер, запустит <code>claude</code>.</p>
+</div></div>
+<div class="step"><div class="n">7</div><div>
+<h3>Профили по моделям</h3>
+<pre><code>omniroute setup-claude
+omniroute launch --profile glm52
+omniroute setup-claude --only glm,kimi
+omniroute setup-claude --dry-run</code></pre>
+<p>Профили: <code>~/.claude/profiles/<имя>/settings.json</code></p>
+</div></div>
+<div class="step"><div class="n">8</div><div>
+<h3>Вручную</h3>
+<p>Base URL <b>без</b> <code>/v1</code>. Файл <code>%USERPROFILE%\.claude\settings.json</code>:</p>
+<pre><code>{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:20128",
+    "ANTHROPIC_AUTH_TOKEN": "ТВОЙ_КЛЮЧ_OMNIROUTE",
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
+  }
+}</code></pre>
+<p>Env читаются один раз при старте — после смены перезапусти <code>claude</code>.</p>
+</div></div>
+</section>
+
+<section id="daily">
+<h2>4. Каждый день и команды</h2>
+<ol>
+<li>Окно 1: <code>omniroute</code></li>
+<li>Окно 2: <code>omniroute launch</code></li>
+<li>Dashboard → Monitoring / Logs — куда ушли запросы</li>
+</ol>
+<pre><code>omniroute status
+omniroute logs --follow
+omniroute providers list
+omniroute providers test-all
+omniroute update
+omniroute run claude
+omniroute launch-codex</code></pre>
+</section>
+
+<section id="other">
+<h2>5. Другие инструменты</h2>
+<div class="grid">
+<div class="box"><h3>Cursor / Cline / Continue</h3>
+<p>Base URL <code>http://localhost:20128/v1</code>, ключ из Endpoints, модель <code>auto</code>.</p></div>
+<div class="box"><h3>Codex</h3>
+<p><code>omniroute setup-codex</code> затем <code>codex --profile …</code> или <code>omniroute launch-codex</code>.</p></div>
+</div>
+</section>
+
+<section id="trouble">
+<h2>6. Проблемы</h2>
+<div class="grid">
+<div class="box"><h3>omniroute не находится</h3><p>Переоткрой терминал. Проверь <code>npm list -g omniroute</code>.</p></div>
+<div class="box"><h3>Порт 20128 занят</h3><p><code>omniroute --port 3000</code></p></div>
+<div class="box"><h3>Пустой /v1/models</h3><p>Подключи провайдера в Dashboard.</p></div>
+<div class="box"><h3>Claude игнорирует шлюз</h3><p>URL без <code>/v1</code>, перезапуск <code>claude</code>.</p></div>
+<div class="box"><h3>Качество «не Claude»</h3><p>Ожидаемо: отвечает upstream-модель.</p></div>
+<div class="box"><h3>Диагностика</h3>
+<pre><code>omniroute doctor
+curl http://localhost:20128/v1/models -H "Authorization: Bearer КЛЮЧ"</code></pre></div>
+</div>
+</section>
+
+<section id="check">
+<h2>7. Чеклист Windows</h2>
+<pre><code>1. node -v / npm -v
+2. npm install -g omniroute
+3. omniroute                    ← окно 1
+4. localhost:20128 → Providers
+5. Endpoints → API key
+6. omniroute setup-claude
+7. omniroute launch             ← окно 2
+8. Logs — запросы через OmniRoute</code></pre>
+<div class="box tip">
+<p>Доки: <a href="https://github.com/diegosouzapw/OmniRoute/blob/main/docs/getting-started/QUICK-START.md">Quick Start</a> · <a href="https://github.com/diegosouzapw/OmniRoute/blob/main/docs/guides/CLAUDE-CODE-CONFIGURATION.md">Claude Code Config</a> · <a href="https://github.com/diegosouzapw/OmniRoute/wiki/Setup-Guide">Setup Guide</a></p>
+</div>
+</section>
+</main>
+<footer>
+<p><b>VibeCode Hub</b> · <a href="index.html">На главную</a> · <a href="index.html#credits">Токены и кредиты</a></p>
+</footer>
+<script src="app.js"></script>
+
+</body>
+</html>
