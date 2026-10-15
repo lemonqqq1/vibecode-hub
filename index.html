@@ -3,25 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VibeCode Hub</title>
+<title>VibeCode Hub — Claude Code: установка, лимиты, кастомизация</title>
+<meta name="description" content="Claude Code на Windows: установка, лимиты, кастомизация, решение ошибок и быстрый помощник.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family:system-ui;padding:40px;text-align:center;color:#666;background:#0e0d1a">
-<p>Загрузка…</p>
-<script>
-(async function(){
-  var n=21, parts=[];
-  for(var i=0;i<n;i++){
-    var t=await (await fetch('x'+i+'.txt')).text();
-    parts.push(t.trim());
-  }
-  var bin=Uint8Array.from(atob(parts.join('')), function(c){return c.charCodeAt(0);});
-  var html=new TextDecoder('utf-8').decode(bin);
-  document.open();
-  document.write(html);
-  document.close();
-})().catch(function(e){
-  document.body.innerHTML='<p>Ошибка: '+e+'</p><p><a href="omniroute.html" style="color:#9b8cff">Гайд OmniRoute</a></p>';
-});
-</script>
+<body>
+
+<div id="sp"></div>
+<nav>
+<b>VibeCode Hub</b>
+<a href="#start">Старт</a><a href="#quick">Коротко</a><a href="#limits">Лимиты</a><a href="#windows">Ошибки</a><a href="#credits">Токены</a><a href="#customize">Кастомизация</a><a href="#links">GitHub</a>
+<button id="helpbtn">Помощник</button><button id="theme" aria-label="Сменить тему">Тема</button>
+</nav>
+<main>
+
+<header class="hero">
+<div>
+<h1>Claude Code: от установки до максимума лимитов</h1>
+<p class="lead">Пошаговая установка на Windows, как работают лимиты и как выжать из настоящего Claude максимум, решение ошибок и кастомизация. Обновлено в октябре 2026.</p>
+<div class="btns"><a class="btn p" href="#start">Установить за 5 минут</a><a class="btn" href="#limits">Как не упираться в лимиты</a></div>
+</div>
+<div class="tw"><div class="term"><div class="bar"><i></i><i></i><i></i></div>
+<pre><code>irm https://claude.ai/install.ps1 | iex
+claude --version
+claude</code></pre></div></div>
+</header>
+<div class="paths">
+<a class="box path" href="#start"><h3>🚀 У меня есть подписка или API-ключ</h3><p>Установка за 5 минут, по шагам</p></a>
+<a class="box path" href="omniroute.html"><h3>🧩 Нет доступа к лучшей модели</h3><p>Бесплатно через OmniRoute — гайд по установке</p></a>
+<button class="box path" data-help="1"><h3>🛠 Что-то не работает</h3><p>Открой помощника и вставь текст ошибки</p></button>
+</div>
+
+<section id="start">
+<h2>Быстрый старт на Windows</h2>
+<p class="lead">Пять шагов. Выполняй по порядку, каждый шаг короткий.</p>
+<div class="step"><div class="n">1</div><div><h3>Подготовь аккаунт</h3>
+<p>Нужна Windows 10 (1809+) или 11 и один из вариантов доступа: подписка Pro/Max, API-ключ с балансом либо аккаунт Team/Enterprise. Бесплатный план Claude.ai Claude Code не включает.</p>
+<p>Желательно установить <a href="https://git-scm.com/download/win">Git for Windows</a>: с ним Claude Code работает через Bash, без него через PowerShell.</p></div></div>
+<p><em>… полный контент загружается — см. ниже</em></p>
+</section>
+
+<p style="text-align:center;margin:40px 0"><a class="btn p" href="omniroute.html">📖 Полный гайд OmniRoute (бесплатное использование)</a></p>
+
+</main>
+<script src="app.js"></script>
 </body>
 </html>
