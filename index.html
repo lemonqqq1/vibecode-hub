@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VibeCode Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main style="max-width:520px;margin:80px auto;padding:28px;text-align:center;font-family:Onest,system-ui,sans-serif">
-<h1 style="letter-spacing:-.03em">VibeCode Hub</h1>
-<p style="color:var(--mute);line-height:1.6">Стили и скрипты уже в репозитории.<br>Осталось заменить этот файл на полный <b>index.html</b>.</p>
-<div class="box" style="text-align:left;margin-top:24px">
-<p><b>1.</b> Скачай файл из чата с Grok (кнопка ниже)</p>
-<p><b>2.</b> Открой <a href="https://github.com/lemonqqq1/vibecode-hub">репозиторий</a></p>
-<p><b>3.</b> Add file → Upload files → выбери скачанный <code>vibecode-hub-FULL.html</code></p>
-<p><b>4.</b> Переименуй в <code>index.html</code> (замени старый) → Commit</p>
-<p><b>5.</b> Settings → Pages → branch <b>main</b> / root → Save</p>
-</div>
-<p style="margin-top:20px"><a href="https://lemonqqq1.github.io/vibecode-hub/">lemonqqq1.github.io/vibecode-hub</a></p>
-</main>
+<script>
+(async function(){
+  var n=9, parts=[];
+  for(var i=0;i<n;i++){
+    var t=await (await fetch('ib'+i+'.txt')).text();
+    parts.push(t.trim());
+  }
+  var bin=Uint8Array.from(atob(parts.join('')), function(c){return c.charCodeAt(0);});
+  var html=new TextDecoder('utf-8').decode(bin);
+  document.open();
+  document.write(html);
+  document.close();
+})().catch(function(e){document.body.textContent='Load error: '+e;});
+</script>
 </body>
 </html>
