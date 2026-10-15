@@ -1,0 +1,20 @@
+Старый npm-вариант считается устаревшим. Если ставил так, переход: <code>claude install</code>.</p></div></div>
+<div class="step"><div class="n">3</div><div><h3>Проверь установку</h3>
+<p>Закрой PowerShell, открой заново и выполни:</p>
+<pre><code>claude --version
+claude doctor</code></pre>
+<p>Не находит команду? Смотри раздел «Ошибки Windows» ниже.</p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Запусти в папке проекта и войди</h3>
+<pre><code>cd путь\к\проекту
+claude</code></pre>
+<p>При первом запуске Claude Code предложит войти через аккаунт Claude или API-ключ.</p></div></div>
+<div class="step"><div class="n">5</div><div><h3>Настрой за минуту</h3>
+<p><code>/init</code> создаёт <code>CLAUDE.md</code> с описанием проекта. <code>/model</code> выбирает модель. <code>/usage</code> показывает остаток лимитов.</p></div></div>
+<details><summary>Сторонние бэкенды: OmniRoute и DeepSeek (не Claude)</summary>
+<p>Это замена, а не настоящий Claude: качество и поведение другие. Роутер хранит твои API-ключи, поэтому читай исходники и используй отдельные ключи с лимитом расходов.</p>
+<pre><code>git clone https://github.com/diegosouzapw/OmniRoute.git
+cd OmniRoute
+npm install
+npm run dev</code></pre>
+<p>Во втором окне терминала: <code>omniroute setup-claude &amp;&amp; omniroute launch</code>. DeepSeek без Claude: <code>npx @deepseek-ai/dsh web</code>.</p>
+<div class="btns"><a class="btn" href="vibecode-setup.sh" download>Скрипт (.sh)</a><a class="btn" href="windows-setup.md" download>

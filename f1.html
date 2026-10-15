@@ -1,0 +1,11 @@
+<div class="n">1</div><div><h3>Подготовь аккаунт</h3>
+<p>Нужна Windows 10 (1809+) или 11 и один из вариантов доступа: подписка Pro/Max, API-ключ с балансом либо аккаунт Team/Enterprise. Бесплатный план Claude.ai Claude Code не включает.</p>
+<p>Желательно установить <a href="https://git-scm.com/download/win">Git for Windows</a>: с ним Claude Code работает через Bash, без него через PowerShell.</p></div></div>
+<div class="step"><div class="n">2</div><div><h3>Установи Claude Code</h3>
+<p>Выбери свою систему и вставь команду в терминал. Node.js не нужен.</p>
+<div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="ps">PowerShell</button><button role="tab" aria-selected="false" data-t="cmd">CMD</button><button role="tab" aria-selected="false" data-t="wg">WinGet</button><button role="tab" aria-selected="false" data-t="mac">macOS / Linux</button></div>
+<div class="tp" data-p="ps"><pre><code>irm https://claude.ai/install.ps1 | iex</code></pre></div>
+<div class="tp" data-p="cmd" hidden><pre><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code></pre></div>
+<div class="tp" data-p="wg" hidden><pre><code>winget install Anthropic.ClaudeCode</code></pre><p>WinGet не обновляет Claude Code автоматически.</p></div>
+<div class="tp" data-p="mac" hidden><pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre><p>Для macOS есть и Homebrew: <code>brew install --cask claude-code</code>.</p></div>
+<p>
