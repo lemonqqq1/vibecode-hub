@@ -3,68 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VibeCode Hub — Claude Code</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>VibeCode Hub</title>
 </head>
-<body>
-<div id="sp"></div>
-<nav>
-<b>VibeCode Hub</b>
-<a href="#credits">Токены / free</a>
-<a href="omniroute.html"><b>OmniRoute гайд</b></a>
-<button id="theme">Тема</button>
-</nav>
-<main>
-<header class="hero">
-<div>
-<h1>Claude Code: от установки до максимума лимитов</h1>
-<p class="lead">Гайд по установке, лимитам и кастомизации. Раздел бесплатного использования — ниже и на отдельной странице OmniRoute.</p>
-<div class="btns">
-<a class="btn p" href="omniroute.html">Подробный гайд OmniRoute</a>
-<a class="btn" href="#credits">Токены и кредиты</a>
-</div>
-</div>
-</header>
-
-<section id="credits">
-<h2>Бесплатное использование</h2>
-<p class="lead">Официальные free-тиры, кредиты и <a href="omniroute.html">полный гайд по OmniRoute</a> — локальный шлюз для Claude Code на free-моделях.</p>
-
-<div class="box" style="margin-bottom:16px">
-<h3>OmniRoute — бесплатный бэкенд для Claude Code</h3>
-<p>Локальный AI-роутер: один endpoint → много провайдеров (Kiro, OpenCode Free, Pollinations и др.). Claude Code остаётся тем же, «мозг» — модели провайдеров. <b>Это не настоящий Claude.</b></p>
-<pre><code>npm install -g omniroute
-omniroute
-# во втором окне:
-omniroute setup-claude
-omniroute launch</code></pre>
-<p><a class="btn p" href="omniroute.html">Открыть подробный гайд →</a></p>
-</div>
-
-<div class="grid">
-<div class="box"><h3>Google AI Studio</h3><p>Бесплатный Gemini API. <a href="https://aistudio.google.com">aistudio.google.com</a></p></div>
-<div class="box"><h3>Groq</h3><p>Быстрый инференс. <a href="https://console.groq.com">console.groq.com</a></p></div>
-<div class="box"><h3>OpenRouter :free</h3><p>Модели с пометкой free. <a href="https://openrouter.ai">openrouter.ai</a></p></div>
-<div class="box"><h3>Список free-API</h3><p><a href="https://github.com/cheahjs/free-llm-api-resources">cheahjs/free-llm-api-resources</a></p></div>
-</div>
-
-<div class="box warn" style="margin-top:16px">
-<p><b>Не делай:</b> десятки аккаунтов ради лимитов, «дешёвые ключи Claude» с маркетплейсов — часто кража кода и бан.</p>
-</div>
-</section>
-
-<section id="start">
-<h2>Быстрый старт Claude Code</h2>
-<pre><code>irm https://claude.ai/install.ps1 | iex
-claude --version
-claude</code></pre>
-<p>Полный гайд по установке, лимитам и ошибкам Windows — в исходном материале сайта. OmniRoute: <a href="omniroute.html">omniroute.html</a></p>
-</section>
-</main>
-<footer>
-<p><b>VibeCode Hub</b> · <a href="omniroute.html">OmniRoute</a> · <a href="https://github.com/lemonqqq1/vibecode-hub">GitHub</a></p>
-</footer>
-<script src="app.js"></script>
+<body style="font-family:system-ui;padding:40px;text-align:center;color:#666">
+<p>Загрузка…</p>
+<script>
+(async function(){
+  var n=21, parts=[];
+  for(var i=0;i<n;i++){
+    var t=await (await fetch('x'+i+'.txt')).text();
+    parts.push(t.trim());
+  }
+  var bin=Uint8Array.from(atob(parts.join('')), function(c){return c.charCodeAt(0);});
+  var html=new TextDecoder('utf-8').decode(bin);
+  document.open();
+  document.write(html);
+  document.close();
+})().catch(function(e){
+  document.body.innerHTML='<p>Ошибка загрузки: '+e+'</p><p><a href="omniroute.html">Гайд OmniRoute</a></p>';
+});
+</script>
 </body>
 </html>
