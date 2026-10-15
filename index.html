@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VibeCode Hub</title>
 </head>
-<body>
+<body style="font-family:system-ui;padding:40px;text-align:center;color:#666">
+<p>Загрузка…</p>
 <script>
 (async function(){
-  var n=9, parts=[];
+  var n=21, parts=[];
   for(var i=0;i<n;i++){
-    var t=await (await fetch('ib'+i+'.txt')).text();
+    var t=await (await fetch('x'+i+'.txt')).text();
     parts.push(t.trim());
   }
   var bin=Uint8Array.from(atob(parts.join('')), function(c){return c.charCodeAt(0);});
@@ -18,7 +19,9 @@
   document.open();
   document.write(html);
   document.close();
-})().catch(function(e){document.body.textContent='Load error: '+e;});
+})().catch(function(e){
+  document.body.innerHTML='<p>Ошибка загрузки: '+e+'</p>';
+});
 </script>
 </body>
 </html>
