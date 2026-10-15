@@ -1,0 +1,16 @@
+Шпаргалка (.md)</a></div></details>
+</section>
+
+<section id="quick">
+<h2>Коротко: скачать и запустить, даже без Opus</h2>
+<p class="lead">Если лучшая модель недоступна на твоём тарифе или быстро съедает лимит, Claude Code всё равно работает на других моделях.</p>
+<div class="step"><div class="n">1</div><div><h3>Скачай</h3><pre><code>irm https://claude.ai/install.ps1 | iex</code></pre></div></div>
+<div class="step"><div class="n">2</div><div><h3>Выбери модель, которая тебе доступна</h3>
+<pre><code>claude --model sonnet</code></pre>
+<p>Или внутри сессии: <code>/model</code>. Доступны псевдонимы <code>opus</code>, <code>sonnet</code>, <code>haiku</code>. Sonnet и Haiku расходуют лимит заметно медленнее, для большинства правок кода их хватает.</p></div></div>
+<div class="step"><div class="n">3</div><div><h3>Нет подписки? Используй API-ключ</h3>
+<p>Создай ключ в <a href="https://console.anthropic.com">Anthropic Console</a>, положи небольшой баланс и войди ключом при первом запуске. Платишь только за использованные токены, лёгкие модели стоят дёшево.</p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Нужны облачные кредиты? Через Bedrock или Vertex</h3>
+<p>Claude Code умеет работать через AWS Bedrock и Google Vertex AI: так можно тратить пробные облачные кредиты. Настройка описана в <a href="https://code.claude.com/docs/en/setup">официальной документации</a>.</p></div></div>
+<details><summary>Свой роутер или шлюз (LiteLLM, OmniRoute)</summary>
+<p>Claude Code можно направить на совместимый шлюз переменными окружения. Так запускаются и другие модели, но это уже не Claude, а замена: качество и поведение отличаются.</p>
