@@ -9,7 +9,7 @@
 <p>Загрузка…</p>
 <script>
 (async function(){
-  var n=21, parts=[];
+  var n=26, parts=[];
   for(var i=0;i<n;i++){
     var t=await (await fetch('x'+i+'.txt')).text();
     parts.push(t.trim());
